@@ -48,7 +48,7 @@ export const getAllBooks = () => {
 };
 export const deleteBook = (id) => {
     return dispatch => {
-        axios.post(`http://127.0.0.1:8000/api/v1/books/${id}/delete`)
+        axios.delete(`http://127.0.0.1:8000/api/v1/books/${id}/`)
             .then(res => {
                 dispatch(bookActions.deleteBook({ id }))
             }).catch(err => {
@@ -58,7 +58,7 @@ export const deleteBook = (id) => {
 };
 export const addBook = (book) => {
     return dispatch => {
-        axios.post(`http://127.0.0.1:8000/api/v1/books/add/`, {
+        axios.post(`http://127.0.0.1:8000/api/v1/books/`, {
             ...book
         }).then(res => {
             dispatch(bookActions.addBook({ book: res.data.data.book }))
@@ -69,7 +69,7 @@ export const addBook = (book) => {
 };
 export const updateBook = (book, id) => {
     return dispatch => {
-        axios.post(`http://127.0.0.1:8000/api/v1/books/${id}/update`, {
+        axios.patch(`http://127.0.0.1:8000/api/v1/books/${id}/`, {
             ...book
         }).then(res => {
             dispatch(bookActions.updateBook({ book, id }))
